@@ -19,6 +19,11 @@
 		<input type="number" name="width"> Width<br>
 		<input type="submit" name="Submit"> ${result}<br>
 	</form>
+	<p>Enter a book's ISBN to get a book from the library</p>
+	<form action="/getBook">
+		<input type="text" name="ISBN"> ISBN<br>
+		<input type="submit" name="Submit"><br>
+	</form>
 	
 </body>
 </html>
