@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
     
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 		<input type="text" name="name"> Name<br>
 		<input type="text" name="category"> Category<br>
 		<input type="number" name="width"> Width<br>
-		<input type="submit" name="Submit"><br>
+		<input type="submit" name="Submit"> ${result}<br>
 	</form>
 	
 </body>
