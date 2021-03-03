@@ -1,5 +1,6 @@
 package com.bregolif.digitalLibrary.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -7,8 +8,11 @@ import javax.persistence.Id;
 public class Book {
 	@Id
 	String ISBN;
+	@Column
 	String name;
+	@Column
 	String category;
+	@Column
 	int width;
 	
 	public String getISBN() {
