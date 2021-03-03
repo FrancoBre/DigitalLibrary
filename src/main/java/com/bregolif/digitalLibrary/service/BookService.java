@@ -1,5 +1,7 @@
 package com.bregolif.digitalLibrary.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,7 @@ import com.bregolif.digitalLibrary.dao.LibraryRepo;
 import com.bregolif.digitalLibrary.model.Book;
 
 @Service
-public class LibraryService {
+public class BookService {
 	
 	@Autowired
 	private LibraryRepo repo;
@@ -17,4 +19,10 @@ public class LibraryService {
 	public void save(Book book) { repo.save(book); }
 	
 	public Optional<Book> get(String ISBN) { return repo.findById(ISBN); }
+	
+	public List<Book> getAll() {
+		List<Book> ret = new ArrayList<Book>();
+		repo.findAll().forEach(ret::add);
+		return ret;
+	}
 }

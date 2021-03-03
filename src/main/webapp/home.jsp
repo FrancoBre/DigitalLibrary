@@ -14,6 +14,7 @@
 	
 	 <a href="add.jsp">Enter a book</a><br>
 	<a href="fetch.jsp">Look for a book</a><br>
+	<a href="fetchAll.jsp">See all books</a><br>
 	
 </body>
 </html>

@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bregolif.digitalLibrary.model.Book;
-import com.bregolif.digitalLibrary.service.LibraryService;
+import com.bregolif.digitalLibrary.service.BookService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	LibraryService service;
+	BookService service;
 	
 	@RequestMapping("/")
 	public String home() {
@@ -23,9 +23,8 @@ public class HomeController {
 	@RequestMapping("/addBook")
 	public ModelAndView addBook(Book book) {
 		ModelAndView ret = new ModelAndView("home");
-		
 		service.save(book);
-		ret.addObject("result", "Book added");
+		ret.addObject("result", (book==null)?"":"Book added");
 		return ret;
 	}
 	
@@ -33,6 +32,13 @@ public class HomeController {
 	public ModelAndView getBook(@RequestParam String ISBN) {
 		ModelAndView ret = new ModelAndView("fetch");
 		ret.addObject("book", (service.get(ISBN).isEmpty())?"":service.get(ISBN));
+		return ret;
+	}
+	
+	@RequestMapping("/getAllBooks")
+	public ModelAndView getAllBooks() {
+		ModelAndView ret = new ModelAndView("fetchAll");
+		ret.addObject("books", (service.getAll()));
 		return ret;
 	}
 }
