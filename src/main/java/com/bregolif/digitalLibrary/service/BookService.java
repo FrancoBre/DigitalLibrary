@@ -1,6 +1,5 @@
 package com.bregolif.digitalLibrary.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +19,5 @@ public class BookService {
 	
 	public Optional<Book> get(String ISBN) { return repo.findById(ISBN); }
 	
-	public List<Book> getAll() {
-		List<Book> ret = new ArrayList<Book>();
-		repo.findAll().forEach(ret::add);
-		return ret;
-	}
+	public List<Book> getAll() { return repo.findAll(); }
 }

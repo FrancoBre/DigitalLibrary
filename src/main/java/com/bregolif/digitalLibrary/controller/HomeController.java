@@ -22,7 +22,7 @@ public class HomeController {
 	
 	@RequestMapping("/addBook")
 	public ModelAndView addBook(Book book) {
-		ModelAndView ret = new ModelAndView("home");
+		ModelAndView ret = new ModelAndView("addBook");
 		service.save(book);
 		ret.addObject("result", (book==null)?"":"Book added");
 		return ret;
@@ -30,14 +30,14 @@ public class HomeController {
 	
 	@RequestMapping("/getBook")
 	public ModelAndView getBook(@RequestParam String ISBN) {
-		ModelAndView ret = new ModelAndView("fetch");
+		ModelAndView ret = new ModelAndView("fetchBook");
 		ret.addObject("book", (service.get(ISBN).isEmpty())?"":service.get(ISBN));
 		return ret;
 	}
 	
 	@RequestMapping("/getAllBooks")
 	public ModelAndView getAllBooks() {
-		ModelAndView ret = new ModelAndView("fetchAll");
+		ModelAndView ret = new ModelAndView("fetchAllBooks");
 		ret.addObject("books", (service.getAll()));
 		return ret;
 	}

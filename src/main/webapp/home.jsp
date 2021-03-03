@@ -12,9 +12,9 @@
 	<h1>Digital library</h1>
 	<p>Welcome! Please select an option</p><br>
 	
-	 <a href="add.jsp">Enter a book</a><br>
-	<a href="fetch.jsp">Look for a book</a><br>
-	<a href="fetchAll.jsp">See all books</a><br>
+	 <a href="addBook.jsp">Enter a book</a><br>
+	<a href="fetchBook.jsp">Look for a book</a><br>
+	<a href="fetchAllBooks.jsp">See all books</a><br>
 	
 </body>
 </html>

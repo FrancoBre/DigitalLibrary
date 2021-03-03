@@ -2,6 +2,7 @@ package com.bregolif.digitalLibrary.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,7 +16,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Library {
 	@Id
-	int libraryId; 
+	int libraryId;
+	@Column
+	String name;
 	@OneToMany(mappedBy="library")
 	List<Book> book;
 	@OneToMany(mappedBy="library")
@@ -29,6 +32,14 @@ public class Library {
 		this.libraryId = libraryId;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public List<Book> getBook() {
 		return book;
 	}
