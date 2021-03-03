@@ -10,7 +10,7 @@
 <body>
 
 	<h1>Digital library</h1>
-	<p1>Welcome! Please select an option</p1><br>
+	<p>Welcome! Please select an option</p><br>
 	
 	 <a href="add.jsp">Enter a book</a><br>
 	<a href="fetch.jsp">Look for a book</a><br>

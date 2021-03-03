@@ -1,19 +1,18 @@
 package com.bregolif.digitalLibrary.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
 	@Id
 	String ISBN;
-	@Column
 	String name;
-	@Column
 	String category;
-	@Column
 	int width;
+	@ManyToOne
+	Library library;
 	
 	public String getISBN() {
 		return ISBN;
