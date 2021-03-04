@@ -21,7 +21,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/addLibrary")
-	public String addLibrary(@RequestParam String name, @RequestParam("shelfNumber") int number,
+	public String addLibrary(@RequestParam String name, 
+			@RequestParam("shelfNumber") int number,
 			@RequestParam("shelfWidth") int width) {
 		service.save(name, number, width);
 		return "home";
@@ -36,7 +37,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/removeBook")
-	public ModelAndView removeBook(String isbn) {
+	public ModelAndView removeBook(@RequestParam String isbn) {
 		ModelAndView ret = new ModelAndView("addBook");
 		service.remove(isbn);
 		ret.addObject("result", "Book removed");
@@ -46,7 +47,8 @@ public class HomeController {
 	@RequestMapping("/getBook")
 	public ModelAndView getBook(@RequestParam String ISBN) {
 		ModelAndView ret = new ModelAndView("fetchBook");
-		ret.addObject("book", (service.get(ISBN).isEmpty())?"":service.get(ISBN));
+		ret.addObject("book", (service.get(ISBN).isEmpty())?"":
+			service.get(ISBN));
 		return ret;
 	}
 	
@@ -54,6 +56,16 @@ public class HomeController {
 	public ModelAndView getAllBooks() {
 		ModelAndView ret = new ModelAndView("fetchAllBooks");
 		ret.addObject("books", (service.getAll()));
+		return ret;
+	}
+	
+	@RequestMapping("/labelShelf")
+	public ModelAndView labelShelf(@RequestParam("id") Integer shelfId, 
+			@RequestParam String category) {
+		ModelAndView ret = new ModelAndView("labelShelf");
+		service.label(shelfId, category);
+		ret.addObject("result", (service.shelfExists(shelfId)?
+				"Shelf labeled succesfully":"Shelf not found"));
 		return ret;
 	}
 	

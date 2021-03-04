@@ -14,7 +14,7 @@ import com.bregolif.digitalLibrary.repository.LibraryRepo;
 import com.bregolif.digitalLibrary.repository.ShelfRepo;
 
 @Service
-public class LibraryService {
+public class LibraryService implements LibraryServiceInterface {
 	
 	@Autowired
 	private LibraryRepo lRepo;
@@ -36,11 +36,11 @@ public class LibraryService {
 	 * ArrayList for later book additions
 	 * 
 	 */
-	public void save(String name, int shelfNumber, int shelfWidth) {
+	public void save(String name, Integer shelfNumber, Integer shelfWidth) {
 		Library library = new Library(name, shelfNumber, shelfWidth);
 		lRepo.save(library);
 		
-		for (int i = 0; i < shelfNumber; i++) {
+		for (Integer i = 1; i < shelfNumber+1; i++) {
 			Shelf shelf = new Shelf(i, shelfWidth, library);
 			sRepo.save(shelf);
 		}
@@ -50,8 +50,18 @@ public class LibraryService {
 	 * Labels a shelf with a category
 	 * 
 	 */
-	public void label(int shelfId, String category) {
-		
+	public void label(Integer shelfId, String category) {
+		Shelf shelf = sRepo.findById(shelfId).orElse(null);
+		shelf.setCategory(category);
+		sRepo.save(shelf);
+	}
+	
+	/**
+	 * Checks if a shelf exists based on its id
+	 * 
+	 */
+	public boolean shelfExists(Integer shelfId) {
+		return sRepo.existsById(shelfId);
 	}
 	
 	public void remove(String isbn) { bRepo.deleteById(isbn); }

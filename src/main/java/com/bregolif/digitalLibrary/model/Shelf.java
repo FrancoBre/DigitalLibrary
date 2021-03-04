@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Shelf {
 	@Id
-	int shelfId;
+	Integer shelfId;
 	String category;
 	double width;
 	@ManyToOne
@@ -27,7 +27,7 @@ public class Shelf {
 	
 	public Shelf(){}
 	
-	public Shelf(int shelfId, double width, Library library) {
+	public Shelf(Integer shelfId, double width, Library library) {
 		super();
 		this.shelfId = shelfId;
 		this.category = "";
@@ -36,11 +36,11 @@ public class Shelf {
 		this.book = new ArrayList<>();
 	}
 
-	public int getShelfId() {
+	public Integer getShelfId() {
 		return shelfId;
 	}
 	
-	public void setShelfId(int shelfId) {
+	public void setShelfId(Integer shelfId) {
 		this.shelfId = shelfId;
 	}
 	

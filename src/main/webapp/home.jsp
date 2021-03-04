@@ -16,6 +16,7 @@
 	<a href="removeBook.jsp">Remove a book</a><br>
 	<a href="fetchBook.jsp">Look for a book</a><br>
 	<a href="fetchAllBooks.jsp">See all books</a><br>
+	<a href="labelShelf.jsp">Label a shelf with a category</a><br>
 	
 </body>
 </html>
