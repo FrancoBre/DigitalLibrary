@@ -13,6 +13,8 @@ public class Book {
 	int width;
 	@ManyToOne
 	Library library;
+	@ManyToOne
+	Shelf shelf;
 	
 	public String getISBN() {
 		return ISBN;

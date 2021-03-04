@@ -1,8 +1,12 @@
 package com.bregolif.digitalLibrary.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Every shelf will have books, but them books' width must not
@@ -18,7 +22,20 @@ public class Shelf {
 	double width;
 	@ManyToOne
 	Library library;
+	@OneToMany(mappedBy="shelf")
+	List<Book> book;
 	
+	public Shelf(){}
+	
+	public Shelf(int shelfId, double width, Library library) {
+		super();
+		this.shelfId = shelfId;
+		this.category = "";
+		this.width = width;
+		this.library = library;
+		this.book = new ArrayList<>();
+	}
+
 	public int getShelfId() {
 		return shelfId;
 	}
