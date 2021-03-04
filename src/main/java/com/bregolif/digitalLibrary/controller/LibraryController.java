@@ -31,15 +31,15 @@ public class LibraryController {
 	@RequestMapping("/addBook")
 	public ModelAndView addBook(Book book) {
 		ModelAndView ret = new ModelAndView("addBook");
-		service.save(book);
-		ret.addObject("result", (book==null)?"":"Book added");
+		ret.addObject("result", (service.save(book))?
+				"Book added":"There is not a shelf for the book's category");
 		return ret;
 	}
 	
 	@RequestMapping("/removeBook")
-	public ModelAndView removeBook(@RequestParam String isbn) {
+	public ModelAndView removeBook(@RequestParam String ISBN) {
 		ModelAndView ret = new ModelAndView("addBook");
-		service.remove(isbn);
+		service.remove(ISBN);
 		ret.addObject("result", "Book removed");
 		return ret;
 	}
