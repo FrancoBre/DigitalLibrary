@@ -40,9 +40,11 @@ public class LibraryService implements LibraryServiceInterface {
 		if(shelf == null) 
 			return false;
 		else {
+			book.setLibrary(shelf.getLibrary());	// Set book's shelf 
+			book.setShelf(shelf);			 		// and library
 			bRepo.save(book);
-			shelf.getBook().add(book); // Update shelf's
-			sRepo.save(shelf);		   // book list
+			shelf.getBook().add(book);				// Update shelf's
+			sRepo.save(shelf);		   				// book list
 			return true;
 		}
 	}
@@ -96,6 +98,8 @@ public class LibraryService implements LibraryServiceInterface {
 	public boolean shelfExists(Integer shelfId) {
 		return sRepo.existsById(shelfId);
 	}
+	
+	public List<Shelf> getAllShelfs() { return sRepo.findAll(); }
 	
 	public void remove(String isbn) { bRepo.deleteById(isbn); }
 	

@@ -10,7 +10,7 @@ import com.bregolif.digitalLibrary.model.Book;
 import com.bregolif.digitalLibrary.service.LibraryService;
 
 @Controller
-public class HomeController {
+public class LibraryController {
 	
 	@Autowired
 	LibraryService service;
@@ -66,6 +66,13 @@ public class HomeController {
 		service.label(shelfId, category);
 		ret.addObject("result", (service.shelfExists(shelfId)?
 				"Shelf labeled succesfully":"Shelf not found"));
+		return ret;
+	}
+	
+	@RequestMapping("/getAllShelfs")
+	public ModelAndView getAllShelfs() {
+		ModelAndView ret = new ModelAndView("fetchAllShelfs");
+		ret.addObject("shelfs", (service.getAllShelfs()));
 		return ret;
 	}
 	

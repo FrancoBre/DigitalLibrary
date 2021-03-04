@@ -46,12 +46,30 @@ public class Book {
 	
 	public void setWidth(int width) {
 		this.width = width;
+	}  
+	
+	public Library getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(Library library) {
+		this.library = library;
+	}
+
+	public Shelf getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(Shelf shelf) {
+		this.shelf = shelf;
 	}
 
 	@Override
 	public String toString() {
-		return name+", category=" + category + 
-				", width=" + width + "]";
+		return "[ISBN=" + ISBN + ", name=" + name + ", category=" + category + ", width=" + width + ", library="
+				+ library + ", shelf=" + shelf + "]";
 	}
+
+	
 
 }

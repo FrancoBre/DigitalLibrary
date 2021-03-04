@@ -78,8 +78,8 @@ public class Shelf {
 
 	@Override
 	public String toString() {
-		return "Shelf [shelfId=" + shelfId + ", category=" + category + ", width=" + width + ", library=" + library
+		return "Shelf [shelfId=" + shelfId + ", category=" + category + ", width=" + width + ", library=" + library.getName()
 				+ "]";
 	}
-	
+
 }
