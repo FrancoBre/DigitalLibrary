@@ -8,11 +8,11 @@
 </head>
 <body>
 	<h1>Digital library</h1>
-	<p>Press "Submit Query" to see all shelfs registered in the library</p>
-	<form action="/getAllShelfs">
+	<p>Press "Submit Query" to see all shelves registered in the library</p>
+	<form action="/getAllShelves">
 		<input type="submit" name="Submit"><br>
 	</form>
- 	${shelfs}<br>
+ 	${shelves}<br>
 	Go back to <a href="home.jsp">home page</a>
 </body>
 </html>

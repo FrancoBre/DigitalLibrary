@@ -100,27 +100,47 @@ public class LibraryService implements LibraryServiceInterface {
 	}
 	
 	/**
+	 * Checks if a book exists based on its ISBN
+	 * 
+	 */
+	
+	/**
 	 * Indicates if the book would fit in the shelf
 	 * 
 	 */
-	public boolean fitsInShelf(Shelf shelf, Book book) {
+	private boolean fitsInShelf(Shelf shelf, Book book) {
 		return freeSpace(shelf) <= book.getWidth();
 	}
 	
 	/**
 	 * @return return how many free space does the @param shelf has
 	 */
-	public double freeSpace(Shelf shelf) {
+	private double freeSpace(Shelf shelf) {
 		double ret = shelf.getWidth();
 		for(Book book : shelf.getBook())
 			ret = ret - book.getWidth();
 		return ret;
 	}
 	
-	public List<Shelf> getAllShelfs() { return sRepo.findAll(); }
+	public List<Shelf> getAllShelves() { return sRepo.findAll(); }
 	
-	public void remove(String isbn) { bRepo.deleteById(isbn); }
+	public void remove(String iSBN) { 
+		bRepo.deleteById(iSBN);
+		removeFromShelf(iSBN);
+	}
 	
+	/**
+	 * Removes a book from its shelf
+	 * @param iSBN, is used to identify the book
+	 * 
+	 */
+	private void removeFromShelf(String iSBN) {
+		Book book = get(iSBN).orElse(null);
+		Shelf shelf = book.getShelf();
+		
+		shelf.getBook().remove(book);
+	}
+
 	public Optional<Book> get(String ISBN) { return bRepo.findById(ISBN); }
 	
 	public List<Book> getAll() { return bRepo.findAll(); }

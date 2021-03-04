@@ -67,7 +67,7 @@ public class Book {
 	@Override
 	public String toString() {
 		return "[ISBN=" + ISBN + ", name=" + name + ", category=" + category + ", width=" + width + ", library="
-				+ library.name + ", shelf=" + shelf.getShelfId() + "]";
+				+ library.name + ", shelf=" + shelf.getShelfId() + "]\n";
 	}
 
 	

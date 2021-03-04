@@ -31,16 +31,15 @@ public class LibraryController {
 	@RequestMapping("/addBook")
 	public ModelAndView addBook(Book book) {
 		ModelAndView ret = new ModelAndView("addBook");
-		ret.addObject("result", (service.save(book))?
-				"Book added":"There is not a shelf for the book's category"
-						+ ", or that shelf is full");
+		service.save(book);
+		ret.addObject("result", (book==null)?"":"Book added");
 		return ret;
 	}
 	
 	@RequestMapping("/removeBook")
-	public ModelAndView removeBook(@RequestParam String ISBN) {
-		ModelAndView ret = new ModelAndView("addBook");
-		service.remove(ISBN);
+	public ModelAndView removeBook(@RequestParam("ISBN") String iSBN) {
+		ModelAndView ret = new ModelAndView("removeBook");
+		service.remove(iSBN);
 		ret.addObject("result", "Book removed");
 		return ret;
 	}
@@ -60,6 +59,13 @@ public class LibraryController {
 		return ret;
 	}
 	
+	@RequestMapping("/getAllShelves")
+	public ModelAndView getAllShelves() {
+		ModelAndView ret = new ModelAndView("fetchAllShelves");
+		ret.addObject("shelves", (service.getAllShelves()));
+		return ret;
+	}
+	
 	@RequestMapping("/labelShelf")
 	public ModelAndView labelShelf(@RequestParam("id") Integer shelfId, 
 			@RequestParam String category) {
@@ -67,13 +73,6 @@ public class LibraryController {
 		service.label(shelfId, category);
 		ret.addObject("result", (service.shelfExists(shelfId)?
 				"Shelf labeled succesfully":"Shelf not found"));
-		return ret;
-	}
-	
-	@RequestMapping("/getAllShelfs")
-	public ModelAndView getAllShelfs() {
-		ModelAndView ret = new ModelAndView("fetchAllShelfs");
-		ret.addObject("shelfs", (service.getAllShelfs()));
 		return ret;
 	}
 	

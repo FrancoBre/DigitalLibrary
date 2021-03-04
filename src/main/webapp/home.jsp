@@ -13,7 +13,7 @@
 	<p>Please select an option</p><br>
 	
 	<a href="labelShelf.jsp">Label a shelf with a category</a><br>
-	<a href="fetchAllShelfs.jsp">See all shelfs</a><br>
+	<a href="fetchAllShelves.jsp">See all shelves</a><br>
 	<a href="addBook.jsp">Enter a book</a><br>
 	<a href="removeBook.jsp">Remove a book</a><br>
 	<a href="fetchBook.jsp">Look for a book</a><br>
