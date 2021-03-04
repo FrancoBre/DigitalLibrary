@@ -27,7 +27,40 @@ public class LibraryService implements LibraryServiceInterface {
 	
 	public void save(Library library) { lRepo.save(library); }
 	
-	public void save(Book book) { bRepo.save(book); }
+	/**
+	 * @return if there is a book labeled with the @param book's category,
+	 * the book is added to a corresponding shelf and the method returns 
+	 * true. If there is no shelf labeled with the book's category, the 
+	 * method returns false;
+	 * 
+	 */
+	public boolean save(Book book) { 
+		Shelf shelf = getShelf(book.getCategory());
+		
+		if(shelf == null) 
+			return false;
+		else {
+			bRepo.save(book);
+			shelf.getBook().add(book); // Update shelf's
+			sRepo.save(shelf);		   // book list
+			return true;
+		}
+	}
+	
+	/**
+	 * @return returns a shelf for a specific @param category, if it 
+	 * exists. If it doesn't, it will return null.
+	 * 
+	 */
+	public Shelf getShelf(String category) {
+		Shelf ret = null;
+		
+		for(Shelf shelf : sRepo.findAll()) 
+			if(shelf.getCategory().equals(category))
+				ret = shelf;
+		
+		return ret;
+	}
 	
 	/**
 	 * This method creates a library and with it, its shelfs
@@ -69,4 +102,5 @@ public class LibraryService implements LibraryServiceInterface {
 	public Optional<Book> get(String ISBN) { return bRepo.findById(ISBN); }
 	
 	public List<Book> getAll() { return bRepo.findAll(); }
+
 }

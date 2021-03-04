@@ -68,6 +68,14 @@ public class Shelf {
 		this.library = library;
 	}
 	
+	public List<Book> getBook() {
+		return book;
+	}
+
+	public void setBook(List<Book> book) {
+		this.book = book;
+	}
+
 	@Override
 	public String toString() {
 		return "Shelf [shelfId=" + shelfId + ", category=" + category + ", width=" + width + ", library=" + library
