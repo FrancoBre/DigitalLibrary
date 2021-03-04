@@ -31,8 +31,9 @@ public class LibraryController {
 	@RequestMapping("/addBook")
 	public ModelAndView addBook(Book book) {
 		ModelAndView ret = new ModelAndView("addBook");
-		service.save(book);
-		ret.addObject("result", (book==null)?"":"Book added");
+		ret.addObject("result", (service.save(book))?
+				"Book added":"There is not a shelf for the book's category"
+						+ ", or that shelf is full");
 		return ret;
 	}
 	
