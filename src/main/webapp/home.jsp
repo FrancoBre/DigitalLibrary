@@ -10,9 +10,10 @@
 <body>
 
 	<h1>Digital library</h1>
-	<p>Welcome! Please select an option</p><br>
+	<p>Please select an option</p><br>
 	
-	 <a href="addBook.jsp">Enter a book</a><br>
+	<a href="addBook.jsp">Enter a book</a><br>
+	<a href="removeBook.jsp">Remove a book</a><br>
 	<a href="fetchBook.jsp">Look for a book</a><br>
 	<a href="fetchAllBooks.jsp">See all books</a><br>
 	

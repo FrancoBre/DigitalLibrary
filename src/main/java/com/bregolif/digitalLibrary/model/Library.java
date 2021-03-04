@@ -1,8 +1,8 @@
 package com.bregolif.digitalLibrary.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,28 +16,47 @@ import javax.persistence.OneToMany;
 @Entity
 public class Library {
 	@Id
-	int libraryId;
-	@Column
 	String name;
+	int shelfNumber;
+	int shelfWidth;
 	@OneToMany(mappedBy="library")
 	List<Book> book;
 	@OneToMany(mappedBy="library")
 	List<Shelf> shelf;
 	
-	public Integer getLibraryId() {
-		return libraryId;
-	}
+	public Library() {}
 	
-	public void setLibraryId(Integer libraryId) {
-		this.libraryId = libraryId;
+	public Library(String name, int shelfNumber, int shelfWidth) {
+		super();
+		this.name = name;
+		this.shelfNumber = shelfNumber;
+		this.shelfWidth = shelfWidth;
+		this.book = new ArrayList<>();
+		this.shelf = new ArrayList<>();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getShelfNumber() {
+		return shelfNumber;
+	}
+
+	public void setShelfNumber(int shelfNumber) {
+		this.shelfNumber = shelfNumber;
+	}
+
+	public int getShelfWidth() {
+		return shelfWidth;
+	}
+
+	public void setShelfWidth(int shelfWidth) {
+		this.shelfWidth = shelfWidth;
 	}
 
 	public List<Book> getBook() {
@@ -55,10 +74,10 @@ public class Library {
 	public void setShelf(List<Shelf> shelf) {
 		this.shelf = shelf;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Library [libraryId=" + libraryId + ", book=" + book + ", shelf=" + shelf + "]";
+		return "Library [name=" + name + ", shelfNumber=" + shelfNumber + ", book=" + book + ", shelf=" + shelf + "]";
 	}
 	
 }

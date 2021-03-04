@@ -7,16 +7,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bregolif.digitalLibrary.model.Book;
-import com.bregolif.digitalLibrary.service.BookService;
+import com.bregolif.digitalLibrary.service.LibraryService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	BookService service;
+	LibraryService service;
 	
 	@RequestMapping("/")
-	public String home() {
+	public String main() {
+		return "main";
+	}
+	
+	@RequestMapping("/addLibrary")
+	public String addLibrary(@RequestParam String name, @RequestParam("shelfNumber") int number,
+			@RequestParam("shelfWidth") int width) {
+		service.save(name, number, width);
 		return "home";
 	}
 	
@@ -25,6 +32,14 @@ public class HomeController {
 		ModelAndView ret = new ModelAndView("addBook");
 		service.save(book);
 		ret.addObject("result", (book==null)?"":"Book added");
+		return ret;
+	}
+	
+	@RequestMapping("/removeBook")
+	public ModelAndView removeBook(String isbn) {
+		ModelAndView ret = new ModelAndView("addBook");
+		service.remove(isbn);
+		ret.addObject("result", "Book removed");
 		return ret;
 	}
 	
@@ -41,4 +56,5 @@ public class HomeController {
 		ret.addObject("books", (service.getAll()));
 		return ret;
 	}
+	
 }

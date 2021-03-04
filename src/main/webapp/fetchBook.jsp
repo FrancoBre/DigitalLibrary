@@ -14,6 +14,6 @@
 		<input type="submit" name="Submit"><br>
 	</form>
 	${book}<br>
-	Go back to <a href="http://localhost:8080/">home page</a>
+	Go back to <a href="home.jsp">home page</a>
 </body>
 </html>

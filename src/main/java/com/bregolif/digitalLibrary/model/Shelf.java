@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * Every shelf will have books, but them books' width must not
+ * surpass the shelf width
+ * @author franco
+ *
+ */
 @Entity
 public class Shelf {
 	@Id
