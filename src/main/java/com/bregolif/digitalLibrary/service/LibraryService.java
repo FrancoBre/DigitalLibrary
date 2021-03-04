@@ -30,14 +30,14 @@ public class LibraryService implements LibraryServiceInterface {
 	/**
 	 * @return if there is a book labeled with the @param book's category,
 	 * the book is added to a corresponding shelf and the method returns 
-	 * true. If there is no shelf labeled with the book's category, the 
-	 * method returns false;
+	 * true. If there is no shelf labeled with the book's category or the, 
+	 * book doesn't fit in the shelf, the method returns false.
 	 * 
 	 */
 	public boolean save(Book book) { 
 		Shelf shelf = getShelf(book.getCategory());
 		
-		if(shelf == null) 
+		if(shelf == null || fitsInShelf(shelf, book)) 
 			return false;
 		else {
 			book.setLibrary(shelf.getLibrary());	// Set book's shelf 
@@ -48,7 +48,7 @@ public class LibraryService implements LibraryServiceInterface {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * @return returns a shelf for a specific @param category, if it 
 	 * exists. If it doesn't, it will return null.
@@ -97,6 +97,24 @@ public class LibraryService implements LibraryServiceInterface {
 	 */
 	public boolean shelfExists(Integer shelfId) {
 		return sRepo.existsById(shelfId);
+	}
+	
+	/**
+	 * Indicates if the book would fit in the shelf
+	 * 
+	 */
+	public boolean fitsInShelf(Shelf shelf, Book book) {
+		return freeSpace(shelf) <= book.getWidth();
+	}
+	
+	/**
+	 * @return return how many free space does the @param shelf has
+	 */
+	public double freeSpace(Shelf shelf) {
+		double ret = shelf.getWidth();
+		for(Book book : shelf.getBook())
+			ret = ret - book.getWidth();
+		return ret;
 	}
 	
 	public List<Shelf> getAllShelfs() { return sRepo.findAll(); }
