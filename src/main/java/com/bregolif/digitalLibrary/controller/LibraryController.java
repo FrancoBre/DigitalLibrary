@@ -30,6 +30,7 @@ public class LibraryController {
 	
 	@RequestMapping("/addBook")
 	public ModelAndView addBook(Book book) {
+		if(book.getISBN().length() > 13) return new ModelAndView("error");
 		ModelAndView ret = new ModelAndView("addBook");
 		ret.addObject("result", (service.save(book))?
 				"Book added":"There is not a shelf for the book's category"

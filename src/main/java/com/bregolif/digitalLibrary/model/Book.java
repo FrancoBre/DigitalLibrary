@@ -1,5 +1,6 @@
 package com.bregolif.digitalLibrary.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -7,6 +8,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Book {
 	@Id
+	@Column(columnDefinition = "varchar(13)")
 	String ISBN;
 	String name;
 	String category;
